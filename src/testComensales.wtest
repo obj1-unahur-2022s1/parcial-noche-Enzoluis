@@ -2,24 +2,48 @@ import comidas.*
 import comensales.*
 describe "Test de Comensales" {
 	
+	const vegetariano = new Vegetariano(peso=68500)
+	const hambrepopu = new HambrePopu(peso=85000)
+	const paladarFino = new PaladarFino(peso=70000)
+
+	const p1= new Provoleta(peso=190,especias=true)
+	const b1= new BurgerCarne()
+	const b2= new BurgerVegan(legumbre="garbanzos")
+	const parri = new Parrillada()
+	const asado= new CorteCarne(nom="Asado",calidad=10,peso=250)
+	const entrania= new CorteCarne(nom="Entrania",calidad=7,peso=200)
+	const chori = new CorteCarne(nom="Chori",calidad=8,peso=50)
+	
+	const burgerCar = new BurgerCarne()
+
 	method initialize() {
+		b1.configurarPan(panCas)
+		b2.configurarPan(panMaMa)
+		parri.agregarCorte(asado)
+		parri.agregarCorte(entrania)
+		parri.agregarCorte(chori)
 		
+		hambrepopu.comer(parri)
+
+		burgerCar.configurarPan(panMaMa)
 	}
 	
 	test "Vegetariano satisfecho " {
-		assert.that(true)
+		assert.that(vegetariano.satisfecho())
 	}
 
 	test "Popular no satisfecho" {
-		assert.notThat(false)	
+		assert.notThat(hambrepopu.satisfecho())	
 	}	
 	
 	test "Paladar Fino, le agrada Hamburgesa de carne de 250 gramos con pan de masa madre." {
-		assert.that(true)	
+		assert.that(paladarFino.leAgrada(burgerCar))	
 	}
 	
 	test "Paladar No Fino, no le agrada Hamburguesa de carne de 250 gramos con pan casero." {
-		assert.notThat(false)	
+		burgerCar.configurarPan(panCas)
+		assert.notThat(paladarFino.leAgrada(burgerCar))	
 	}
 	
 }
+
