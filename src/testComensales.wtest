@@ -24,8 +24,14 @@ describe "Test de Comensales" {
 		parri.agregarCorte(chori)
 		
 		hambrepopu.comer(parri)
+		
 
 		burgerCar.configurarPan(panMaMa)
+		
+		vegetariano.comer(p1)
+		vegetariano.comer(b2)
+		vegetariano.comer(b2)
+		
 	}
 	
 	test "Vegetariano satisfecho " {
